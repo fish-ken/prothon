@@ -1,27 +1,21 @@
-import prothon
-from glob import glob 
+# import prothon
+# from glob import glob
 
-EXCEL_PATH = './Excel/'
-EXPORT_PROTO_PATH = './Proto/'
-
-
-# Return *.proto files name
-def get_proto_list():
-    pattern = EXPORT_PROTO_PATH + '**[!*.meta]'
-    return glob(pattern)
+# EXCEL_PATH = './Excel/'
+# EXPORT_PROTO_PATH = './Proto/'
 
 
-# Compile *.proto
-def compile_proto(excel_path):
-    prothon.compile(excel_path)
+# # Return *.xlsx files name
+# def get_excel_list():
+#     pattern = EXCEL_PATH + '[!~$]**[!*.meta]'
+#     return glob(pattern)
 
 
-if __name__ is '__main__':
-    for name in get_proto_list():
-        compile_proto(name)
-        break
+# # Generate *.proto by *.xlsx
+# def generate_proto(excel_path):
+#     prothon.generate(excel_path)
 
 
-
-
-
+# if __name__ == '__main__':
+#     for name in get_excel_list():
+#         generate_proto(name)
