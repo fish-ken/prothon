@@ -18,6 +18,4 @@ def compile(proto_name):
     
 
     
-# def compile_proto(proto_name):
-#     pass
 
