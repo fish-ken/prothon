@@ -4,11 +4,6 @@ from glob import glob
 EXCEL_PATH = './Excel/'
 EXPORT_PROTO_PATH = './Proto/'
 
-# Return *.xlsx files name
-def get_excel_list():
-    pattern = EXCEL_PATH + '[!~$]**[!*.meta]'
-    return glob(pattern)
-
 # Return *.proto files name
 def get_proto_list():
     pattern = EXPORT_PROTO_PATH + '**[!*.meta]'

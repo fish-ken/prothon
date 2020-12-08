@@ -3,7 +3,7 @@ import codecs
 
 def __is_excel_file(file_name):
     if '$' in file_name or '.meta' in file_name:
-        print('[ProtoGenerator] Not exceel file ' + file_name)
+        print('[prothon] Not exceel file ' + file_name)
         return False
     return True
 
