@@ -1,5 +1,6 @@
 from prothon.proto_base import ProtoBase
 
+
 class ProtoField(ProtoBase):
     def __init__(self, option, data_type, name, index):
         self.__name = option
