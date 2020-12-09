@@ -1,7 +1,13 @@
 # prothon
 Generate .proto by .xlsx 
 
-## Usage
 
+## Installation
+```
+some installation
+```
 
-## Requirements
+## Quick start
+```
+some example 
+```
