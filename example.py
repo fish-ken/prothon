@@ -17,9 +17,10 @@ def generate_proto(excel_path):
 
 
 if __name__ == '__main__':
-    for name in get_excel_list():
-        contents = generate_proto(name)
+    for excel_name in get_excel_list():
+        proto = generate_proto(excel_name)
+        proto_name = excel_name.split('.')[0] + '.proto'
 
-        f = open(name + '.proto', 'w', encoding='utf8')
-        f.write(contents)
+        f = open(proto_name, 'w', encoding='utf8')
+        f.write(proto)
         f.close()

@@ -59,7 +59,9 @@ def generate(excel_name):
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
 
-        file_name = sheet.title + '.proto'
-        f = open(file_name, 'w', encoding='utf8')
-        f.write(message.make())
-        f.close()
+        # TODO : Make hierarchy
+        
+        return message.make()
+
+
+    # TODO : Validate hierarchy

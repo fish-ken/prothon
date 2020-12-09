@@ -4,7 +4,8 @@ import openpyxl
 from prothon.proto_base import ProtoBase
 from prothon.proto_field import ProtoField
 
-IGNORE_COLUMN_CHARACTER = '~'
+HIERARCHY_IDENTIFIER = '*'
+IGNORE_COLUMN_IDENTIFIER = '~'
 MESSAGE_FORMAT = \
     'message {0}\n\
 {{\
@@ -35,8 +36,16 @@ class ProtoMessage(ProtoBase):
         for column_index in range(len(self.__sheet[row_index])):
             column_name = self.__sheet[row_index][column_index].value
 
-            if IGNORE_COLUMN_CHARACTER in column_name:
+            if column_name is None:
                 continue
+
+            if IGNORE_COLUMN_IDENTIFIER in column_name:
+                continue
+
+            if HIERARCHY_IDENTIFIER in column_name:
+                # TODO : Make hierarchy
+                continue
+
 
             column_elements = column_name.split('[')
 
