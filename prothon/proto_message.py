@@ -60,5 +60,5 @@ class ProtoMessage(ProtoBase):
 
     def make(self):
         fields = self.__make_elements(self.__fields)
-        messages = self.__make_messages(self.__messages)
-        return MESSAGE_FORMAT.format(fields, messages)
+        messages = self.__make_elements(self.__messages)
+        return MESSAGE_FORMAT.format(self.__name, fields, messages)
