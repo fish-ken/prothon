@@ -1,7 +1,6 @@
 ## Complier list
-
-- protoc.exe : compiler for Windows 64 
-- protoc : compiler for macOS 
+- protoc (for macOS)
+- protoc.exe (for Windows 64)
 
 ## Usage
 
