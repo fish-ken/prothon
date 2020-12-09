@@ -9,4 +9,4 @@ class ProtoField(ProtoBase):
         self.__index = index
 
     def make(self):
-        return '{} {} {} = {};\n'.format(self.__name, self.__data_type, self.__field_name, self.__index)
+        return '{} {} {} = {};\n'.format(self.__name, self.__data_type, self.__name, self.__index)
