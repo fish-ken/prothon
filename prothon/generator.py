@@ -21,12 +21,14 @@ def generate(excel_name):
 
     workbook = openpyxl.load_workbook(excel_name)
 
+    message_list = []
+
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
+        message_list.append(message)
 
-        # TODO : Make hierarchy
-
-        return proto + message.make()
+        if mess
+        
 
     # TODO : Validate hierarchy
 

@@ -26,6 +26,7 @@ class ProtoMessage(ProtoBase):
     def __init__(self, sheet: openpyxl.worksheet):
         self.__sheet = sheet
         self.__name = self.__sheet.title
+        self.__enums = []
         self.__fields = []
         self.__messages = []
         self.__field_index = 0

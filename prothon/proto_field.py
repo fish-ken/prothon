@@ -10,7 +10,7 @@ class ProtoField(ProtoBase):
         self.__initialize()
 
     def __initialize(self):
-        if self.__data_type is 'enum':
+        if self.__data_type == 'enum':
             self.__data_type = self.__name
 
     def make(self):
