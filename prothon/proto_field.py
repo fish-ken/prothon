@@ -7,6 +7,14 @@ class ProtoField(ProtoBase):
         self.__data_type = data_type
         self.__name = name
         self.__index = index
+        self.__initialize()
+
+    def __initialize(self):
+        if self.__data_type is 'enum':
+            self.__data_type = self.__name
 
     def make(self):
-        return '\t{} {} {} = {};\n'.format(self.__option, self.__data_type, self.__name, self.__index)
+        if self.__option is None:
+            return '\t{} {} = {};\n'.format(self.__data_type, self.__name, self.__index)
+        else:
+            return '\t{} {} {} = {};\n'.format(self.__option, self.__data_type, self.__name, self.__index)

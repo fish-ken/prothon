@@ -28,11 +28,12 @@ class ProtoMessage(ProtoBase):
         self.__name = self.__sheet.title
         self.__fields = []
         self.__messages = []
+        self.__field_index = 0
         self.__initialize()
 
     def __initialize(self):
         row_index = 2
-        field_index = 0
+
         for column_index in range(len(self.__sheet[row_index])):
             column_name = self.__sheet[row_index][column_index].value
 
@@ -46,17 +47,16 @@ class ProtoMessage(ProtoBase):
                 # TODO : Make hierarchy
                 continue
 
-
             column_elements = column_name.split('[')
 
             # TODO : Variable option
-            option = 'required'
+            option = None
             type_name = column_elements[1][:-1]
             name = column_elements[0]
-            field_index += 1
+            self.__field_index += 1
 
             self.__fields.append(ProtoField(
-                option, type_name, name, field_index))
+                option, type_name, name, self.__field_index))
 
     def __make_elements(self, proto_elements: List[ProtoBase]):
         syntax = ''
@@ -65,7 +65,15 @@ class ProtoMessage(ProtoBase):
         return syntax
 
     def add_message(self, message):
+
+        # Add message declare
         self.__messages.append(message)
+
+        # Add message as field
+        field_name = message.name[0].lower() + message.name[1:]
+        self.__field_index += 1
+        self.__fields.append(ProtoField(
+            'repeated', message.name, field_name, self.__field_index))
 
     def make(self):
         fields = self.__make_elements(self.__fields)

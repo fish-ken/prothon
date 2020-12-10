@@ -1,6 +1,6 @@
 # prothon
 Generate .proto by .xlsx 
-
+> Based on proto3
 
 ## Installation
 ```
