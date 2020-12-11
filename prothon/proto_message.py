@@ -1,8 +1,11 @@
 from typing import List
 import openpyxl
+from openpyxl.utils import get_column_letter
 
 from prothon.proto_base import ProtoBase
 from prothon.proto_field import ProtoField
+from prothon.proto_enum import ProtoEnum
+from openpyxl.utils import get_column_letter
 
 ROOT_HIERARCHY_NAME = 'root'
 HIERARCHY_ROW_INDEX = 1
@@ -18,6 +21,8 @@ MESSAGE_FORMAT = \
 {1}\
 \n\
 {2}\
+\n\
+{3}\
 \n\
 }}'
 
@@ -63,14 +68,20 @@ class ProtoMessage(ProtoBase):
 
             column_elements = column_name.split('[')
 
-            # TODO : Variable option
-            option = None
+            # Field declaration
+            option = None       # TODO : Variable option
             type_name = column_elements[1][:-1]
             name = column_elements[0]
             self.__field_index += 1
-
             self.__fields.append(ProtoField(
                 option, type_name, name, self.__field_index))
+
+            # Enum declaration
+            if type_name == 'enum':
+                column_header = self.__sheet[COLUMN_ROW_INDEX][column_index].column
+                enum = ProtoEnum(self.__sheet, column_header, name)
+                self.__enums.append(enum)
+
 
     def __make_elements(self, proto_elements: List[ProtoBase]):
         syntax = ''
@@ -79,17 +90,17 @@ class ProtoMessage(ProtoBase):
         return syntax
 
     def add_message(self, message):
-
-        # Add message declare
+        # Add message declaration
         self.__messages.append(message)
 
-        # Add message as field
+        # Add message as repeated field
         field_name = message.name[0].lower() + message.name[1:]
         self.__field_index += 1
         self.__fields.append(ProtoField(
             'repeated', message.name, field_name, self.__field_index))
 
     def make(self):
+        enums = self.__make_elements(self.__enums)
         fields = self.__make_elements(self.__fields)
         messages = self.__make_elements(self.__messages)
-        return MESSAGE_FORMAT.format(self.__name, fields, messages)
+        return MESSAGE_FORMAT.format(self.__name, enums, fields, messages)
