@@ -1,6 +1,20 @@
 ### ProtocolBuffer
 **/*.proto
 
+
+### Compiler output
+# C#
+**/*.cs
+# Java 
+**/*.java
+# C++
+**/*.pb.cc
+**/*.pb.h
+# Go
+**/*.go
+# Dart
+**/*.dart
+
 ### Visual Studio Code
 .vscode/*
 !.vscode/settings.json
