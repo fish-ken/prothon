@@ -5,11 +5,13 @@
 ### Compiler output
 # C#
 **/*.cs
-# Java 
-**/*.java
 # C++
 **/*.pb.cc
 **/*.pb.h
+# Python
+**/*_pb2.py
+# Java 
+**/*.java
 # Go
 **/*.go
 # Dart
