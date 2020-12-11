@@ -4,8 +4,13 @@ import openpyxl
 from prothon.proto_base import ProtoBase
 from prothon.proto_field import ProtoField
 
+ROOT_HIERARCHY_NAME = 'root'
+HIERARCHY_ROW_INDEX = 1
+COLUMN_ROW_INDEX = 2
+
 HIERARCHY_IDENTIFIER = '*'
 IGNORE_COLUMN_IDENTIFIER = '~'
+
 MESSAGE_FORMAT = \
     'message {0}\n\
 {{\
@@ -23,8 +28,17 @@ class ProtoMessage(ProtoBase):
     :param sheet : excel worksheet
     """
 
+    @property
+    def parent(self):
+        return self.__parent
+
+    @property
+    def name(self):
+        return self.__name
+
     def __init__(self, sheet: openpyxl.worksheet):
         self.__sheet = sheet
+        self.__parent = ''
         self.__name = self.__sheet.title
         self.__enums = []
         self.__fields = []
@@ -33,10 +47,10 @@ class ProtoMessage(ProtoBase):
         self.__initialize()
 
     def __initialize(self):
-        row_index = 2
+        self.__parent = self.__sheet[HIERARCHY_ROW_INDEX][0].value[1:]
 
-        for column_index in range(len(self.__sheet[row_index])):
-            column_name = self.__sheet[row_index][column_index].value
+        for column_index in range(len(self.__sheet[COLUMN_ROW_INDEX])):
+            column_name = self.__sheet[COLUMN_ROW_INDEX][column_index].value
 
             if column_name is None:
                 continue
@@ -45,7 +59,6 @@ class ProtoMessage(ProtoBase):
                 continue
 
             if HIERARCHY_IDENTIFIER in column_name:
-                # TODO : Make hierarchy
                 continue
 
             column_elements = column_name.split('[')

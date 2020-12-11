@@ -1,5 +1,5 @@
 import openpyxl
-from prothon.proto_message import ProtoMessage
+from prothon.proto_message import *
 
 
 def __is_excel_file(file_name):
@@ -21,15 +21,18 @@ def generate(excel_name):
 
     workbook = openpyxl.load_workbook(excel_name)
 
-    message_list = []
+    message_map = {}
 
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
-        message_list.append(message)
+        message_map[message.name] = message
 
-        if mess
+    # TODO : Make hierarchy    
+    for message in message_map.items():
         
+        if message.parent == ROOT_HIERARCHY_NAME:
+            continue
 
-    # TODO : Validate hierarchy
+    return proto + message_map[ROOT_HIERARCHY_NAME].make()
 
 
