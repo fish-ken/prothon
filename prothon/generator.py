@@ -1,6 +1,6 @@
 import openpyxl
-from prothon.proto_message import *
-
+from prothon.proto_message import ProtoMessage
+from prothon.proto_const import ROOT_HIERARCHY_NAME
 
 def __is_excel_file(file_name):
     if '$' in file_name or '.meta' in file_name:
@@ -26,11 +26,11 @@ def generate(excel_name):
     # Construct message   
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
-        message_map[message.name] = message
+        message_map[message.parent] = message
 
     # Make hierarchy    
     for message in message_map.values():
-        if message.value.parent == ROOT_HIERARCHY_NAME:
+        if message.parent == ROOT_HIERARCHY_NAME:
             continue
 
         message_map[message.parent].add_message(message)

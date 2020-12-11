@@ -5,14 +5,8 @@ from openpyxl.utils import get_column_letter
 from prothon.proto_base import ProtoBase
 from prothon.proto_field import ProtoField
 from prothon.proto_enum import ProtoEnum
-from openpyxl.utils import get_column_letter
+from prothon.proto_const import ROOT_HIERARCHY_NAME, IGNORE_COLUMN_IDENTIFIER, HIERARCHY_IDENTIFIER, HIERARCHY_ROW_INDEX, COLUMN_ROW_INDEX
 
-ROOT_HIERARCHY_NAME = 'root'
-HIERARCHY_ROW_INDEX = 1
-COLUMN_ROW_INDEX = 2
-
-HIERARCHY_IDENTIFIER = '*'
-IGNORE_COLUMN_IDENTIFIER = '~'
 
 MESSAGE_FORMAT = \
     'message {0}\n\
@@ -78,10 +72,10 @@ class ProtoMessage(ProtoBase):
 
             # Enum declaration
             if type_name == 'enum':
-                column_header = self.__sheet[COLUMN_ROW_INDEX][column_index].column
+                column_header = get_column_letter(
+                    self.__sheet[COLUMN_ROW_INDEX][column_index].column)
                 enum = ProtoEnum(self.__sheet, column_header, name)
                 self.__enums.append(enum)
-
 
     def __make_elements(self, proto_elements: List[ProtoBase]):
         syntax = ''
