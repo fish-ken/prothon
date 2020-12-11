@@ -23,16 +23,18 @@ def generate(excel_name):
 
     message_map = {}
 
+    # Make message   
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
         message_map[message.name] = message
 
-    # TODO : Make hierarchy    
+    # Make hierarchy    
     for message in message_map.items():
-        
         if message.parent == ROOT_HIERARCHY_NAME:
             continue
-
+        
+        message_map[message.parent].add_message(message)
+        
     return proto + message_map[ROOT_HIERARCHY_NAME].make()
 
 
