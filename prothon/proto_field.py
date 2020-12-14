@@ -15,6 +15,6 @@ class ProtoField(ProtoBase):
 
     def make(self):
         if self.__option is None:
-            return '\t{} {} = {};\n'.format(self.__data_type, self.__name, self.__index)
+            return '{} {} = {};'.format(self.__data_type, self.__name, self.__index)
         else:
-            return '\t{} {} {} = {};\n'.format(self.__option, self.__data_type, self.__name, self.__index)
+            return '{} {} {} = {};'.format(self.__option, self.__data_type, self.__name, self.__index)

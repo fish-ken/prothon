@@ -3,11 +3,9 @@ from prothon.proto_base import ProtoBase
 from prothon.proto_const import COLUMN_ROW_INDEX
 
 ENUM_FORMAT = \
-    'enum {0}\n\
+'enum {0}\
 {{\
-\n\
 {1}\
-\n\
 }}'
 
 
@@ -44,7 +42,7 @@ class ProtoEnum(ProtoBase):
 
         for i in range(len(self.__enum_elements)):
             field_index = i + 1
-            enum_fields += '\t{} = {};\n'.format(
+            enum_fields += '{} = {};'.format(
                 self.__enum_elements[i], field_index)
 
         return ENUM_FORMAT.format(self.__name, enum_fields)

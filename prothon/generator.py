@@ -13,11 +13,27 @@ def __is_excel_file(file_name):
 #     return indent + syntax
 
 
+def __format_proto(proto):
+    formatted = proto
+    formatted = formatted.replace('{', '\n{\n')
+    formatted = formatted.replace('}}', '}\n}')
+    formatted = formatted.replace('}', '}\n\n')
+    formatted = formatted.replace(';', ';\n')
+    formatted = formatted.replace('message ', '\nmessage ')
+
+
+    # for character in proto:
+    #     print(character)
+
+    return formatted
+
+
+
 def generate(excel_name):
     if __is_excel_file(excel_name) is False:
         pass
 
-    proto = 'syntax = "proto3";\n\n'
+    proto = 'syntax = "proto3";\n'
 
     workbook = openpyxl.load_workbook(excel_name)
 
@@ -38,6 +54,8 @@ def generate(excel_name):
         message_map[message.parent].add_message(message)
         
     # Return proto string
-    return proto + message_map[message_root_name].make()
+
+
+    return proto + __format_proto(message_map[message_root_name].make())
 
 
