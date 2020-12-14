@@ -26,15 +26,18 @@ def generate(excel_name):
     # Construct message   
     for sheet in workbook.worksheets:
         message = ProtoMessage(sheet)
-        message_map[message.parent] = message
+        message_map[message.name] = message
 
-    # Make hierarchy    
+    # Make hierarchy
+    message_root_name = None
     for message in message_map.values():
         if message.parent == ROOT_HIERARCHY_NAME:
+            message_root_name = message.name
             continue
 
         message_map[message.parent].add_message(message)
         
-    return proto + message_map[ROOT_HIERARCHY_NAME].make()
+    # Return proto string
+    return proto + message_map[message_root_name].make()
 
 
