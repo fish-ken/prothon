@@ -1,9 +1,8 @@
-from openpyxl.utils import get_column_letter
 from prothon.proto_base import ProtoBase
 from prothon.proto_const import COLUMN_ROW_INDEX
 
 ENUM_FORMAT = \
-'enum {0}\
+    'enum {0}\
 {{\
 {1}\
 }}'

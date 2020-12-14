@@ -9,7 +9,7 @@ from prothon.proto_const import ROOT_HIERARCHY_NAME, IGNORE_COLUMN_IDENTIFIER, H
 
 
 MESSAGE_FORMAT = \
-'message {0}\
+    'message {0}\
 {{\
 {1}\
 {2}\
