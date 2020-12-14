@@ -1,14 +1,13 @@
 # prothon
 Generate .proto by .xlsx 
-> Based on proto3
 
 ## Installation
-```
-some installation
+```bash
+pip install prothon
 ```
 
 ## Quick start
-```py
+```python
 import prothon
 
 excel_path = 'YOUR EXCEL PATH'
