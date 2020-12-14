@@ -15,12 +15,11 @@ def __is_excel_file(file_name):
 
 def __format_proto(proto):
     formatted = proto
+    formatted = formatted.replace('message ', '\nmessage ')
     formatted = formatted.replace('{', '\n{\n')
-    formatted = formatted.replace('}}', '}\n}')
     formatted = formatted.replace('}', '}\n\n')
     formatted = formatted.replace(';', ';\n')
-    formatted = formatted.replace('message ', '\nmessage ')
-
+    formatted = formatted.replace('}\n\n}', '}\n}')
 
     # for character in proto:
     #     print(character)
