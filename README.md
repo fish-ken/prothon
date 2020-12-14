@@ -11,12 +11,19 @@ pip install prothon
 ```python
 import prothon
 
-excel_path = 'YOUR EXCEL PATH'
-proto_name = 'YourProto.proto'
 
-proto = generate_proto(excel_path)
+def generate_example():
+    excel_path = 'YOUR EXCEL PATH'
+    proto_name = 'YourProto.proto'
 
-f = open(proto_name, 'w', encoding='utf8')
-f.write(proto)
-f.close()
+    proto = prothon.generate(excel_path)
+
+    f = open(proto_name, 'w', encoding='utf8')
+    f.write(proto)
+    f.close()
+
+#def compile_example():
+#    proto_path = 'YOUR PROTO FILE PATH'
+#  
+#    code = prothon.generate
 ```
