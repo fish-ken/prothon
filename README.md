@@ -1,5 +1,6 @@
 # prothon
-Generate .proto by .xlsx 
+Generate .proto by .xlsx.
+Compile .proto
 
 ## Installation
 ```bash
