@@ -9,16 +9,13 @@ def __is_excel_file(file_name):
         return False
     return True
 
-# def __add_indent(syntax: str, indent_level: int):
-#     indent = '\t' * indent_level
-#     return indent + syntax
-
 
 def __format_proto(proto):
     open_bracket = '{'
     close_bracket = '}'
     indent = '\t'
 
+    # Formatting
     formatted = ''
     proto = proto.replace('message ', '\nmessage ')
     proto = proto.replace(open_bracket, '\n{\n')
@@ -41,13 +38,13 @@ def __format_proto(proto):
     return formatted
 
 
-def generate(excel_name):
-    if __is_excel_file(excel_name) is False:
+def generate(excel_path):
+    if __is_excel_file(excel_path) is False:
         pass
 
     proto = 'syntax = "proto3";\n'
 
-    workbook = openpyxl.load_workbook(excel_name)
+    workbook = openpyxl.load_workbook(excel_path)
 
     message_map = {}
 
