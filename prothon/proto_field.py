@@ -12,6 +12,7 @@ class ProtoField(ProtoBase):
     def __initialize(self):
         if self.__data_type == 'enum':
             self.__data_type = self.__name
+        self.__name = self.__name[0].lower() + self.__name[1:]
 
     def make(self):
         if self.__option is None:
