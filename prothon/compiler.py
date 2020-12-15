@@ -1,4 +1,4 @@
-import platform
+#import platform
 import subprocess
 
 compile_option_map = {
@@ -26,11 +26,13 @@ def __compile_proto(proto_path, import_path, out_option, dest_path):
 
 
 # protoc -I=$SRC_DIR --csharp_out=$DST_DIR $SRC_DIR/addressbook.proto
-# 0 : Import path
-# 1 : Output option
-# 2 : Proto file path
-# 3 : Output destination path
 def compile(proto_path, import_path, target_language, dest_path):
+    """
+    :import_path : Import otehr proto file path
+    :target_language : Output option
+    :proto_path : Proto file path
+    :dest_path : Output destination path
+    """
     if __is_proto_file(proto_path) is False:
         pass
 
