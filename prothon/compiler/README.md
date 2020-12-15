@@ -1,11 +1,6 @@
-## Complier list
-- protoc (for macOS)
-- protoc.exe (for Windows 64)
-
 ## Usage
 
 ```
-
 $SRC_DIR = *.proto directory
 $DST_DIR = Exprot directory
 
