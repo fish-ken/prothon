@@ -21,10 +21,6 @@ def generate_example():
     f.write(proto)
     f.close()
 
-    for proto_path in get_proto_list():
-        language = 'csharp'
-        prothon.compile(proto_path, './', language, './')
-
 
 def compile_example():
     # Your target language
