@@ -3,26 +3,38 @@ import os
 from glob import glob
 
 
-EXCEL_PATH = './tests/Excel/'
-EXPORT_PROTO_PATH = './Proto/'
+EXCEL_PATH = './tests/excel/'
+EXPORT_PROTO_PATH = './tests/proto/'
 
 
-# Return *.xlsx files name
 def get_excel_list():
+    """
+    Return *.xlsx files name
+    """
     pattern = EXCEL_PATH + '[!~$]**[!*.meta]'
     return glob(pattern)
 
 
-# Generate *.proto by *.xlsx
-def generate_proto(excel_path):
-    return prothon.generate(excel_path)
+def get_proto_list():
+    """
+    Return *.proto files name
+    """
+    pattern = EXPORT_PROTO_PATH + '[!~$]**[!*.meta]'
+    return glob(pattern)
 
 
 if __name__ == '__main__':
-    for excel_name in get_excel_list():
-        proto = generate_proto(excel_name)
-        proto_name = os.path.basename(excel_name).split('.')[0] + '.proto'
 
-        f = open(proto_name, 'w', encoding='utf8')
+    # Generate example
+    for excep_path in get_excel_list():
+        proto = prothon.generate(excep_path)
+        proto_name = os.path.basename(excep_path).split('.')[0] + '.proto'
+
+        f = open(EXPORT_PROTO_PATH + proto_name, 'w', encoding='utf8')
         f.write(proto)
         f.close()
+
+    # Compile example
+    for proto_path in get_proto_list():
+        language = 'csharp'
+        prothon.compile(proto_path, './', language, './')

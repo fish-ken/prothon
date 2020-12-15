@@ -1,4 +1,5 @@
-
+import platform
+import subprocess
 
 compile_option_map = {
     'csharp': 'csharp_out',
@@ -12,19 +13,30 @@ compile_option_map = {
 
 def __is_proto_file(file_name):
     if '$' in file_name or '.meta' in file_name:
-        print('[ProtoGenerator] Not exceel file ' + file_name)
+        print('[ProtoCompiler] Not proto file ' + file_name)
         return False
-    return True
 
-# Compile *.proto
-
-
-def __compile_proto(sheet):
-    print(sheet)
+    return file_name.endswith('.proto')
 
 
-def compile(proto_name):
-    if __is_proto_file(proto_name) is False:
+def __compile_proto(proto_path, import_path, out_option, dest_path):
+    command = 'compiler/protoc.exe -I={0} --{1}={2} {3}'.format(
+        import_path, out_option, dest_path, proto_path)
+    subprocess.call(command, shell=False)
+
+
+# protoc -I=$SRC_DIR --csharp_out=$DST_DIR $SRC_DIR/addressbook.proto
+# 0 : Import path
+# 1 : Output option
+# 2 : Proto file path
+# 3 : Output destination path
+def compile(proto_path, import_path, target_language, dest_path):
+    if __is_proto_file(proto_path) is False:
         pass
 
-    __compile_proto(proto_name)
+    if target_language not in compile_option_map:
+        print('[ProtoCompiler] Not availiable language : ' + target_language)
+        pass
+
+    out_option = compile_option_map[target_language]
+    __compile_proto(proto_path, import_path, out_option, dest_path)

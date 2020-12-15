@@ -1,5 +1,6 @@
 import os
 from glob import glob
+import prothon
 
 EXCEL_PATH = './excel/'
 EXPORT_PROTO_PATH = './Proto/'
