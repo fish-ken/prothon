@@ -27,6 +27,7 @@ def __compile_proto(proto_path, import_path, out_option, dest_path):
 # protoc -I=$SRC_DIR --csharp_out=$DST_DIR $SRC_DIR/addressbook.proto
 def compile(proto_path, import_path, target_language, dest_path):
     """Compile .proto file to code
+
     :import_path : Import otehr proto file path
     :target_language : Output option
     :proto_path : Proto file path
