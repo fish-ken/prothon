@@ -4,8 +4,12 @@ from openpyxl.utils import get_column_letter
 
 from prothon.proto_base import ProtoBase
 from prothon.proto_field import ProtoField
+
 from prothon.proto_enum import ProtoEnum
-from prothon.proto_const import ROOT_HIERARCHY_NAME, IGNORE_COLUMN_IDENTIFIER, HIERARCHY_IDENTIFIER, HIERARCHY_ROW_INDEX, COLUMN_ROW_INDEX
+from prothon.proto_const import IGNORE_COLUMN_IDENTIFIER
+from prothon.proto_const import HIERARCHY_IDENTIFIER
+from prothon.proto_const import HIERARCHY_ROW_INDEX
+from prothon.proto_const import COLUMN_ROW_INDEX
 
 
 MESSAGE_FORMAT = \
