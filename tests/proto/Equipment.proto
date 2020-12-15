@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+message Equipment
+{
+	enum Grade
+	{
+		Common = 0;
+		Rare = 1;
+		Unique = 2;
+	}
+	
+	enum Part
+	{
+		Head = 0;
+		Weapon = 1;
+	}
+	
+	string id = 1;
+	string name = 2;
+	Grade grade = 3;
+	string description = 4;
+	Part part = 5;
+	repeated Effect effect = 6;
+	
+	message Effect
+	{
+		enum Effect
+		{
+			ATK_INT = 0;
+			DEF_INT = 1;
+		}
+		
+		string id = 1;
+		Effect effect = 2;
+		float value = 3;
+	}
+}
+

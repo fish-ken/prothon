@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Localization
+{
+	string id = 1;
+	string korean = 2;
+	string english = 3;
+	string japanese = 4;
+	string chinese = 5;
+}
+
