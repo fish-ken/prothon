@@ -10,6 +10,7 @@ def install():
         author_email='sangyun3631@gmail.com',
         description='Generate .proto by .xlsx',
         long_description=open('README.md').read(),
+        long_description_content_type='text/markdown',
         url='https://github.com/Fish-Ken/prothon',
         packages=setuptools.find_packages(),
         classifiers=[
@@ -19,7 +20,9 @@ def install():
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'License :: OSI Approved :: MIT License',
-            'Operating System :: OS Independent'
+            'Operating System :: POSIX',
+            'Operating System :: Microsoft :: Windows',
+            'Operating System :: MacOS :: MacOS X',
         ],
         tests_require=[
             'pytest',
