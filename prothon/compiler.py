@@ -1,3 +1,5 @@
+import os
+import platform
 import subprocess
 from prothon.proto_const import COMPILE_OPTION_MAP
 
@@ -9,11 +11,17 @@ def __is_proto_file(file_name):
 
     return file_name.endswith('.proto')
 
+def __get_compiler_name():
+    return 'protoc.exe' if platform.system() == 'Windows' else 'protoc'
 
 def __compile_proto(proto_path, import_path, out_option, dest_path):
-    command = 'prothon/compiler/protoc -I={0} --{1}={2} {3}'.format(
-        import_path, out_option, dest_path, proto_path)
-    subprocess.call(command, shell=False)
+
+    # Linux: Linux
+    # Mac: Darwin
+    # Windows: Windows
+    compiler_path = os.path.abspath(f'./prothon/compiler/{__get_compiler_name()}')
+    command = f'{compiler_path} -I={import_path} --{out_option}={dest_path} {proto_path}'
+    subprocess.call(command)
 
 
 # protoc -I=$SRC_DIR --csharp_out=$DST_DIR $SRC_DIR/addressbook.proto
