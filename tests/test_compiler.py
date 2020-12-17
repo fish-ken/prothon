@@ -1,7 +1,9 @@
 import os
-import prothon
-from prothon.compiler import compile_option_map
 from glob import glob
+
+import prothon
+from prothon.proto_const import COMPILE_OPTION_MAP
+
 
 PROTO_PATH = './proto/'
 
@@ -21,7 +23,7 @@ def test_compile():
     __remove_compile_output()
 
     for proto_path in __get_proto_list():
-        for language in compile_option_map.keys():
+        for language in COMPILE_OPTION_MAP.keys():
             prothon.compile(proto_path, './proto/',
                             language, './compile_output/')
 

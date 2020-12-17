@@ -1,13 +1,5 @@
 import subprocess
-
-compile_option_map = {
-    'csharp': 'csharp_out',
-    'cpp': 'cpp_output',
-    'python': 'python_out',
-    'java': 'java_out',
-    'go': 'go_out',
-    'dart': 'dart_out',
-}
+from prothon.proto_const import COMPILE_OPTION_MAP
 
 
 def __is_proto_file(file_name):
@@ -36,9 +28,9 @@ def compile(proto_path, import_path, target_language, dest_path):
     if __is_proto_file(proto_path) is False:
         pass
 
-    if target_language not in compile_option_map:
+    if target_language not in COMPILE_OPTION_MAP:
         print('[ProtoCompiler] Not availiable language : ' + target_language)
         pass
 
-    out_option = compile_option_map[target_language]
+    out_option = COMPILE_OPTION_MAP[target_language]
     __compile_proto(proto_path, import_path, out_option, dest_path)
