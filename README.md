@@ -1,9 +1,10 @@
-# prothon
+# [prothon](https://pypi.org/project/prothon/)
 Generate/Compile proto files  
+
 
 ## Installation
 ```bash
-# pip install prothon
+pip install prothon
 ```
 
 ## Quick start
