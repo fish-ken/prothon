@@ -7,7 +7,7 @@ Generate/Compile proto files
 pip install prothon
 ```
 
-## Quick start
+## Quickstart
 ```python
 import prothon
 
